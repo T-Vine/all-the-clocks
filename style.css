@@ -1,7 +1,18 @@
 .inner {
-    fill: grey;
-    fill-opacity: 0.8;
+  fill: grey;
+  fill-opacity: 0.8;
 }
-.colons, .digits {
-    fill: #fff;
+
+.digits, .colons {
+  fill: #fff;
+  fill-opacity: 0.7;
 }
+
+#buttontest {
+  background: darkblue;
+  box-shadow: 0 0 1px rgba(0, 0, 139, 0.25);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/*# sourceMappingURL=style.css.map */

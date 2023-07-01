@@ -1,9 +1,9 @@
-.inner {
+.inner, .date, .day {
   fill: grey;
   fill-opacity: 0.8;
 }
 
-.digits, .colons {
+.digits, .colons, .date-text, .day-text {
   fill: #fff;
   fill-opacity: 0.7;
 }

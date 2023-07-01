@@ -1,4 +1,4 @@
-.inner {
+.inner, .date, .day {
     fill: grey;
     fill-opacity: 0.8;
 }
@@ -14,7 +14,7 @@
     border-radius: 2px;
 }
 
-.digits, .colons {
+.digits, .colons, .date-text, .day-text {
     @include text;
 }
 #buttontest {

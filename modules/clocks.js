@@ -37,6 +37,10 @@ class Clock {
         
         //this.clockEl = document.querySelector(".outer");  
         // Getting DOM for each digit. 
+        this.getInfo()
+    }
+    // Get Info
+    getInfo() {
         this.UI.hour1 = this.body.querySelector(".hour1");
         this.UI.hour2 = this.body.querySelector(".hour2");
 
@@ -47,11 +51,14 @@ class Clock {
         this.UI.sec2 = this.body.querySelector("sec2");
         requestAnimationFrame(this.updateClock);
     }
-    // Update Clock 
-    // Getting element details.
+    // Update Clock.
+    
     updateClock() {
 
     }
 }
+class stopwatch extends Clock {
 
-export { pingFunc, Clock };
+}
+
+export { pingFunc, Clock }; // Exporting classes and functions.

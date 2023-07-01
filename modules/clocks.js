@@ -36,8 +36,8 @@ class Clock {
         
         //this.clockEl = document.querySelector(".outer");  
         // Getting DOM for each digit. 
-        this.getInfo()
-        requestAnimationFrame(this.updateClock);
+        this.getInfo();
+        //requestAnimationFrame(this.updateClock());
     }
     // Get Info
     getInfo() {
@@ -48,12 +48,28 @@ class Clock {
         this.UI.min2 = this.body.querySelector(".min2");
 
         this.UI.sec1 = this.body.querySelector(".sec1");
-        this.UI.sec2 = this.body.querySelector("sec2");
+        this.UI.sec2 = this.body.querySelector(".sec2");
+        
     }
     // Update Clock.
-    
-    updateClock() {
+    init() {
+        this.initClock();
+        this.getInfo();
+        setInterval(this.updateClock,10);
+    }
+    updateClock = () => {
+        let time;
+        let timeArr;
+        time = new Date().toLocaleTimeString();
+        timeArr = time.split(":");
+        this.UI.hour1.textContent = timeArr[0][0];
+        this.UI.hour2.textContent = timeArr[0][1];
 
+        this.UI.min1.textContent = timeArr[1][0];
+        this.UI.min2.textContent = timeArr[1][1];
+        
+        this.UI.sec1.textContent = timeArr[2][0];
+        this.UI.sec2.textContent = timeArr[2][1];
     }
 }
 class ClockWithDate extends Clock {
@@ -65,7 +81,11 @@ class ClockWithDate extends Clock {
     }
 
     getInfoWD() {
-        super.getInfo();
+        this.getInfo();
+        this.UI.day = this.body.querySelector(".day-text");
+        this.UI.date = this.body.querySelector(".date-text");
+        this.updateClockWD();
+        setInterval(this.updateClockWD,10);
     }
 
     initClockWD() {
@@ -96,16 +116,28 @@ class ClockWithDate extends Clock {
         <rect class="date" x="310" y="30" width="80" height="15" rx="5" ry="5" /> \
         <text class="date-text" x="312" y="43">00/00/0000</text> \
         <!-- Day --> \
-        <rect class="day" x="225" y="30" width="80" height="15" rx="5" ry="5" /> \
-        <text class="day-text" x="227" y="41" style="font-family: sans-serif; font-size: 12;" >Monday</text> \
+        <rect class="day" x="240" y="30" width="60" height="15" rx="5" ry="5" /> \
+        <text class="day-text" x="245" y="41" style="font-family: sans-serif; font-size: 12;" >Monday</text> \
     </svg> '
         this.body = document.body.appendChild(clock); // Creating personal instance of the clock for use within class (so we can edit and update).
         
         //this.clockEl = document.querySelector(".outer");  
         // Getting DOM for each digit. 
         this.getInfoWD()
-        // requestAnimationFrame(this.updateClockSW);
+        // requestAnimationFrame(this.updateClockWD);
     }
+    updateClockWD = () => {
+        let date;
+        let day;
+        let days;
+        days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Friday"];
+        date = new Date().toLocaleDateString();
+        day = new Date().getDay();
+        this.updateClock();
+        this.UI.date.textContent = date;
+        this.UI.day.textContent = days[day-1];
+    }
+
 }
 
 export { pingFunc, Clock, ClockWithDate }; // Exporting classes and functions.

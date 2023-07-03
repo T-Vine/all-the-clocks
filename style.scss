@@ -1,12 +1,11 @@
-.inner, .date, .day {
-    fill: grey;
-    fill-opacity: 0.8;
-}
 @mixin text() {
     fill: #fff;
     fill-opacity: 0.7;
 }
-
+@mixin containers($colour:grey) {
+    fill: $colour;
+    fill-opacity: 0.7;
+}
 @mixin button($theme:darkblue) {
     background: $theme;
     box-shadow: 0 0 1px rgba($theme, .25);
@@ -19,4 +18,10 @@
 }
 #buttontest {
     @include button;
+}
+.inner, .date, .day {
+    @include containers;
+}
+.start, .stop, .clear {
+    @include containers(darkblue);
 }

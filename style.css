@@ -12,12 +12,13 @@
 
 .inner, .date, .day {
   fill: grey;
-  fill-opacity: 0.8;
+  fill-opacity: 0.7;
 }
 
 .start, .stop, .clear {
   fill: darkblue;
-  fill-opacity: 0.8;
+  fill-opacity: 0.7;
+  fill-opacity: 0.5;
 }
 
 /*# sourceMappingURL=style.css.map */

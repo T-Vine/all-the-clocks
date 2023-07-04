@@ -24,4 +24,5 @@
 }
 .start, .stop, .clear {
     @include containers(darkblue);
+    fill-opacity: 0.5;
 }

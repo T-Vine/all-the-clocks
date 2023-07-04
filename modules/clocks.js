@@ -84,7 +84,7 @@ class ClockWithDate extends Clock {
         this.getInfo();
         this.UI.day = this.body.querySelector(".day-text");
         this.UI.date = this.body.querySelector(".date-text");
-        this.updateClockWD();
+        //this.updateClockWD();
         setInterval(this.updateClockWD,10);
     }
 
@@ -146,7 +146,22 @@ class StopWatch extends Clock {
     }
 
     getInfoSW() {
-        
+        let start;
+        let stop;
+        let clear;
+        function startPress() {
+            console.log("Started..."); // Simple logging for current use. Will be removed.
+        }
+        function stopPress() {
+            console.log("Stopped...");
+        }
+        function clearPress() {
+            console.log("Cleared...");
+        }
+        document.getElementsByClassName("start")[0].addEventListener("click",startPress);
+        document.getElementsByClassName("stop")[0].addEventListener("click",stopPress);
+        document.getElementsByClassName("clear")[0].addEventListener("click",clearPress);
+        this.getInfo();
     }
 
     initClockSW() {
@@ -172,16 +187,17 @@ class StopWatch extends Clock {
         <text class="digits sec1" x="305" y="105" font-size="85">0</text> \
         <rect class="inner" x="360" y="35" rx="8" ry="8" width="43.75" height="80" /> \
         <text class="digits sec2" x="360" y="105" font-size="85">0</text> \
+        <!-- Text for Buttons --> \
+        <text class="start-text" x="413" y="51" font-size="18" style="fill: #fff; opacity: 1; user-select: none; -webkit-user-select: none;  -ms-user-select: none; ">Start</text>\
+        <text class="stop-text" x="413" y="76" font-size="18" style="fill: #fff; opacity: 1; user-select: none; -webkit-user-select: none;  -ms-user-select: none; ">Stop</text> \
+        <text class="clear-text" x="413" y="101" font-size="18" style="fill: #fff; opacity: 1; user-select: none; -webkit-user-select: none;  -ms-user-select: none; ">Clear</text> \
         <!-- Buttons --> \
         <rect class="start" x="410" y="35" rx="3" ry="3" width="44" height="20" /> \
-        <rect class="stop" x="410" y="85" rx="3" ry="3" width="44" height="20" /> \
-        <rect class="clear" x="410" y="60" rx="3" ry="3" width="44" height="20" /> \
-        <!-- Text for Buttons --> \
-        <text class="start-text" x="413" y="51" font-size="18" style="fill: #fff; opacity: 0.7;">Start</text>\
-        <text class="stop-text" x="413" y="76" font-size="18" style="fill: #fff; opacity: 0.7;">Stop</text> \
-        <text class="clear-text" x="413" y="101" font-size="18" style="fill: #fff; opacity: 0.7;">Clear</text> \
+        <rect class="stop" x="410" y="60" rx="3" ry="3" width="44" height="20" /> \
+        <rect class="clear" x="410" y="85" rx="3" ry="3" width="44" height="20" /> \
         </svg> '
         this.body = document.body.appendChild(clock);
+        this.getInfoSW();
     }
 }
 

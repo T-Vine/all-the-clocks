@@ -117,8 +117,8 @@ class ClockWithDate extends Clock {
         <rect class="date" x="310" y="30" width="80" height="15" rx="5" ry="5" /> \
         <text class="date-text" x="312" y="43">00/00/0000</text> \
         <!-- Day --> \
-        <rect class="day" x="240" y="30" width="60" height="15" rx="5" ry="5" /> \
-        <text class="day-text" x="245" y="41" style="font-family: sans-serif; font-size: 12;" >Monday</text> \
+        <rect class="day" x="230" y="30" width="70" height="15" rx="5" ry="5" /> \
+        <text class="day-text" x="235" y="41" style="font-family: sans-serif; font-size: 12;" >Monday</text> \
     </svg> ';
     this.body = document.body.appendChild(clock);
 
@@ -151,16 +151,15 @@ class StopWatch extends Clock {
     super();
     this.UI = {};
     this.body = document.body;
+    this.counter = 0;
+    this.interval = 0;
     this.initClockSW();
   }
-
   getInfoSW() {
     let start;
     let stop;
     let clear;
-    function startPress() {
-      console.log("Started..."); // Simple logging for current use. Will be removed.
-    }
+    this.getInfo();
     function stopPress() {
       console.log("Stopped...");
     }
@@ -169,14 +168,13 @@ class StopWatch extends Clock {
     }
     document
       .getElementsByClassName("start")[0]
-      .addEventListener("click", startPress);
+      .addEventListener("click", this.updateClockSW);
     document
       .getElementsByClassName("stop")[0]
       .addEventListener("click", stopPress);
     document
       .getElementsByClassName("clear")[0]
       .addEventListener("click", clearPress);
-    this.getInfo();
   }
 
   initClockSW() {
@@ -214,6 +212,19 @@ class StopWatch extends Clock {
         </svg> ';
     this.body = document.body.appendChild(clock);
     this.getInfoSW();
+  }
+  updateClockSW() {
+    let internalCounter;
+    this.interval = setInterval(function () {
+      if (this.counter) {
+        /*0 is undefined as is falsy. */ this.counter += 1;
+        internalCounter = String(this.counter);
+        internalCounter = internalCounter.slice(-1);
+      } else {
+        this.counter = 1;
+        internalCounter = String(this.counter);
+      }
+    }, 1000);
   }
 }
 

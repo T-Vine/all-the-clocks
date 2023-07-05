@@ -1,16 +1,17 @@
 function pingFunc() {
-    console.log("Ping! Online...");
+  console.log("Ping! Online...");
 }
 class Clock {
-    constructor() {
-        this.UI = {}; 
-        this.body = document.body;
-    }
-    // Begin setup.
-    initClock() {
-        // Making Clock
-        const clock = document.createElement("span");
-        clock.innerHTML = ' <svg class="outer" width="450" height="150"> \
+  constructor() {
+    this.UI = {};
+    this.body = document.body;
+  }
+  // Begin setup.
+  initClock() {
+    // Making Clock
+    const clock = document.createElement("span");
+    clock.innerHTML =
+      ' <svg class="outer" width="450" height="150"> \
         <rect x="25" y="25" rx="25" ry="25" width="400" height="100"/> \
         <!-- Hours --> \
         <rect class="inner" x="45" y="35" rx="8" ry="8" width="43.75" height="80" /> \
@@ -31,66 +32,66 @@ class Clock {
         <text class="digits sec1" x="305" y="105" font-size="85">0</text> \
         <rect class="inner" x="360" y="35" rx="8" ry="8" width="43.75" height="80" /> \
         <text class="digits sec2" x="360" y="105" font-size="85">0</text> \
-    </svg> '
-        this.body = document.body.appendChild(clock); // Creating personal instance of the clock for use within class (so we can edit and update).
-        
-        //this.clockEl = document.querySelector(".outer");  
-        // Getting DOM for each digit. 
-        this.getInfo();
-        //requestAnimationFrame(this.updateClock());
-    }
-    // Get Info
-    getInfo() {
-        this.UI.hour1 = this.body.querySelector(".hour1");
-        this.UI.hour2 = this.body.querySelector(".hour2");
+    </svg> ';
+    this.body = document.body.appendChild(clock); // Creating personal instance of the clock for use within class (so we can edit and update).
 
-        this.UI.min1 = this.body.querySelector(".min1");
-        this.UI.min2 = this.body.querySelector(".min2");
+    //this.clockEl = document.querySelector(".outer");
+    // Getting DOM for each digit.
+    this.getInfo();
+    //requestAnimationFrame(this.updateClock());
+  }
+  // Get Info
+  getInfo() {
+    this.UI.hour1 = this.body.querySelector(".hour1");
+    this.UI.hour2 = this.body.querySelector(".hour2");
 
-        this.UI.sec1 = this.body.querySelector(".sec1");
-        this.UI.sec2 = this.body.querySelector(".sec2");
-        
-    }
-    // Update Clock.
-    init() {
-        this.initClock();
-        this.getInfo();
-        setInterval(this.updateClock,10);
-    }
-    updateClock = () => {
-        let time;
-        let timeArr;
-        time = new Date().toLocaleTimeString();
-        timeArr = time.split(":");
-        this.UI.hour1.textContent = timeArr[0][0];
-        this.UI.hour2.textContent = timeArr[0][1];
+    this.UI.min1 = this.body.querySelector(".min1");
+    this.UI.min2 = this.body.querySelector(".min2");
 
-        this.UI.min1.textContent = timeArr[1][0];
-        this.UI.min2.textContent = timeArr[1][1];
-        
-        this.UI.sec1.textContent = timeArr[2][0];
-        this.UI.sec2.textContent = timeArr[2][1];
-    }
+    this.UI.sec1 = this.body.querySelector(".sec1");
+    this.UI.sec2 = this.body.querySelector(".sec2");
+  }
+  // Update Clock.
+  init() {
+    this.initClock();
+    this.getInfo();
+    setInterval(this.updateClock, 10);
+  }
+  updateClock = () => {
+    let time;
+    let timeArr;
+    time = new Date().toLocaleTimeString();
+    timeArr = time.split(":");
+    this.UI.hour1.textContent = timeArr[0][0];
+    this.UI.hour2.textContent = timeArr[0][1];
+
+    this.UI.min1.textContent = timeArr[1][0];
+    this.UI.min2.textContent = timeArr[1][1];
+
+    this.UI.sec1.textContent = timeArr[2][0];
+    this.UI.sec2.textContent = timeArr[2][1];
+  };
 }
 class ClockWithDate extends Clock {
-    constructor() {
-        super();
-        this.UI = {};
-        this.body = document.body;
-        this.initClockWD();
-    }
+  constructor() {
+    super();
+    this.UI = {};
+    this.body = document.body;
+    this.initClockWD();
+  }
 
-    getInfoWD() {
-        this.getInfo();
-        this.UI.day = this.body.querySelector(".day-text");
-        this.UI.date = this.body.querySelector(".date-text");
-        //this.updateClockWD();
-        setInterval(this.updateClockWD,10);
-    }
+  getInfoWD() {
+    this.getInfo();
+    this.UI.day = this.body.querySelector(".day-text");
+    this.UI.date = this.body.querySelector(".date-text");
+    //this.updateClockWD();
+    setInterval(this.updateClockWD, 10);
+  }
 
-    initClockWD() {
-        const clock = document.createElement("span");
-        clock.innerHTML = ' <svg class="outer" width="450" height="150"> \
+  initClockWD() {
+    const clock = document.createElement("span");
+    clock.innerHTML =
+      ' <svg class="outer" width="450" height="150"> \
         <!-- Outer --> \
         <rect x="25" y="25" rx="25" ry="25" width="400" height="115"/> \
         <!-- Hours --> \
@@ -118,55 +119,70 @@ class ClockWithDate extends Clock {
         <!-- Day --> \
         <rect class="day" x="240" y="30" width="60" height="15" rx="5" ry="5" /> \
         <text class="day-text" x="245" y="41" style="font-family: sans-serif; font-size: 12;" >Monday</text> \
-    </svg> '
-        this.body = document.body.appendChild(clock); 
-        
-        //this.clockEl = document.querySelector(".outer");  
-        this.getInfoWD()
-        // requestAnimationFrame(this.updateClockWD);
-    }
-    updateClockWD = () => {
-        let date;
-        let day;
-        let days;
-        days = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Friday"];
-        date = new Date().toLocaleDateString();
-        day = new Date().getDay();
-        this.updateClock();
-        this.UI.date.textContent = date;
-        this.UI.day.textContent = days[day-1];
-    }
+    </svg> ';
+    this.body = document.body.appendChild(clock);
+
+    //this.clockEl = document.querySelector(".outer");
+    this.getInfoWD();
+    // requestAnimationFrame(this.updateClockWD);
+  }
+  updateClockWD = () => {
+    let date;
+    let day;
+    let days;
+    days = [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+      "Friday",
+    ];
+    date = new Date().toLocaleDateString();
+    day = new Date().getDay();
+    this.updateClock();
+    this.UI.date.textContent = date;
+    this.UI.day.textContent = days[day - 1];
+  };
 }
 class StopWatch extends Clock {
-    constructor() {
-        super();
-        this.UI = {};
-        this.body = document.body;
-        this.initClockSW();
-    }
+  constructor() {
+    super();
+    this.UI = {};
+    this.body = document.body;
+    this.initClockSW();
+  }
 
-    getInfoSW() {
-        let start;
-        let stop;
-        let clear;
-        function startPress() {
-            console.log("Started..."); // Simple logging for current use. Will be removed.
-        }
-        function stopPress() {
-            console.log("Stopped...");
-        }
-        function clearPress() {
-            console.log("Cleared...");
-        }
-        document.getElementsByClassName("start")[0].addEventListener("click",startPress);
-        document.getElementsByClassName("stop")[0].addEventListener("click",stopPress);
-        document.getElementsByClassName("clear")[0].addEventListener("click",clearPress);
-        this.getInfo();
+  getInfoSW() {
+    let start;
+    let stop;
+    let clear;
+    function startPress() {
+      console.log("Started..."); // Simple logging for current use. Will be removed.
     }
+    function stopPress() {
+      console.log("Stopped...");
+    }
+    function clearPress() {
+      console.log("Cleared...");
+    }
+    document
+      .getElementsByClassName("start")[0]
+      .addEventListener("click", startPress);
+    document
+      .getElementsByClassName("stop")[0]
+      .addEventListener("click", stopPress);
+    document
+      .getElementsByClassName("clear")[0]
+      .addEventListener("click", clearPress);
+    this.getInfo();
+  }
 
-    initClockSW() {
-        const clock = document.createElement("span");
-        clock.innerHTML = ' <svg class="outer" width="470" height="150"> \
+  initClockSW() {
+    const clock = document.createElement("span");
+    clock.innerHTML =
+      ' <svg class="outer" width="470" height="150"> \
         <rect x="25" y="25" rx="25" ry="25" width="440" height="100"/> \
         <!-- Hours --> \
         <rect class="inner" x="45" y="35" rx="8" ry="8" width="43.75" height="80" /> \
@@ -195,10 +211,10 @@ class StopWatch extends Clock {
         <rect class="start" x="410" y="35" rx="3" ry="3" width="44" height="20" /> \
         <rect class="stop" x="410" y="60" rx="3" ry="3" width="44" height="20" /> \
         <rect class="clear" x="410" y="85" rx="3" ry="3" width="44" height="20" /> \
-        </svg> '
-        this.body = document.body.appendChild(clock);
-        this.getInfoSW();
-    }
+        </svg> ';
+    this.body = document.body.appendChild(clock);
+    this.getInfoSW();
+  }
 }
 
 export { pingFunc, Clock, ClockWithDate, StopWatch }; // Exporting classes and functions.

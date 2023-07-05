@@ -1,16 +1,16 @@
-<!DOCTYPE html>
-<html lang="en"> 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=Edge">
-        <meta name="viewport" content="width=device-width, initial-scale = 1.0">
-        <title> All The Clocks! </title>
-        <script src="script.js" type="module"></script>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0" />
+    <title>All The Clocks!</title>
+    <script src="script.js" type="module"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-    <body>
-        <!--
+  <body>
+    <!--
         <svg class="outer" width="450" height="150">
             
             <rect x="25" y="25" rx="25" ry="25" width="400" height="100"/>
@@ -35,18 +35,15 @@
             <text class="digits sec2" x="360" y="105" font-size="85">0</text>
             
         </svg> -->
-            
-        <!-- <button id="buttontest">Test</button> -->
-        <script type="module"> 
-            import { Clock, ClockWithDate, StopWatch } from "./modules/clocks.js"
-            let c = new Clock;
-            c.init();
-            new ClockWithDate;
-            new StopWatch;
-        </script> 
-        <div class="clock-container">
 
-        </div>
-    </body>
-
+    <!-- <button id="buttontest">Test</button> -->
+    <script type="module">
+      import { Clock, ClockWithDate, StopWatch } from "./modules/clocks.js";
+      let c = new Clock();
+      c.init();
+      new ClockWithDate();
+      new StopWatch();
+    </script>
+    <div class="clock-container"></div>
+  </body>
 </html>

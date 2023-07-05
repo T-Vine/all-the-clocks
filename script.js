@@ -1,4 +1,4 @@
-import { pingFunc, Clock } from "./modules/clocks.js"
+import { pingFunc, Clock } from "./modules/clocks.js";
 pingFunc();
 let x;
 let y;

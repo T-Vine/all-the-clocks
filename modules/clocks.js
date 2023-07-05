@@ -153,13 +153,14 @@ class StopWatch extends Clock {
     this.body = document.body;
     this.counter = 0;
     this.interval = 0;
+    this.updateClockSW = this.updateClockSW.bind(this);
     this.initClockSW();
   }
   getInfoSW() {
+    this.getInfo();
     let start;
     let stop;
     let clear;
-    this.getInfo();
     function stopPress() {
       console.log("Stopped...");
     }
@@ -214,15 +215,19 @@ class StopWatch extends Clock {
     this.getInfoSW();
   }
   updateClockSW() {
+    //console.log(this.UI);
+    let localUI = this.UI;
     let internalCounter;
     this.interval = setInterval(function () {
       if (this.counter) {
         /*0 is undefined as is falsy. */ this.counter += 1;
         internalCounter = String(this.counter);
         internalCounter = internalCounter.slice(-1);
+        localUI.sec2.textContent = internalCounter;
       } else {
         this.counter = 1;
         internalCounter = String(this.counter);
+        localUI.sec2.textContent = internalCounter;
       }
     }, 1000);
   }

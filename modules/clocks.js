@@ -218,18 +218,54 @@ class StopWatch extends Clock {
     //console.log(this.UI);
     let localUI = this.UI;
     let internalCounter;
+    let sec2, sec1, min2, min1, hour2, hour1, truncated, divided;
+    let start = Date.now();
+    let delta;
+    let seconds;
     this.interval = setInterval(function () {
-      if (this.counter) {
-        /*0 is undefined as is falsy. */ this.counter += 1;
-        internalCounter = String(this.counter);
-        internalCounter = internalCounter.slice(-1);
-        localUI.sec2.textContent = internalCounter;
+      delta = start - Date.now();
+      seconds = Math.floor(delta / 1000); // In seconds.
+      sec2 = String(seconds).slice(-1);
+      console.log(sec2);
+      console.log(sec1);
+      if (seconds > 60) {
+        sec1 = String(seconds).slice(-2);
+        localUI.sec1.textContent = sec1;
+      }
+
+      localUI.sec2.textContent = sec2;
+
+      /* if (this.counter) {
+        0 is undefined as is falsy.  this.counter += 1;
+        internalCounter = String(this.counter); 
+        // Getting correct values.
+        /*
+        if (internalCounter > 60) {
+          if (internalCounter/60 < 60) {
+            divided = internalCounter / 60;
+            truncated = Math.trunc(divided); // Removing decimals after converting to minutes.
+            // Initialising variables for minutes.
+            hour2 = truncated.splice(-1);
+            hour1 = truncated.splice(-2);
+          } 
+        }
+        // Initialising variables for seconds.
+        sec2 = internalCounter.slice(-1);
+        if (internalCounter > 360) {
+          truncated =  internalCounter / 60;
+          truncated = Math.floor(truncated);
+
+        }
+        
+        sec1 = internalCounter.slice(-2);
+  
+        localUI.sec2.textContent = sec2;
       } else {
         this.counter = 1;
         internalCounter = String(this.counter);
         localUI.sec2.textContent = internalCounter;
-      }
-    }, 1000);
+      } Deprecated */
+    }, 10);
   }
 }
 

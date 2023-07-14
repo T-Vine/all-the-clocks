@@ -1,5 +1,5 @@
 Despite doing this for a while, it has only crossed my mind now to begin a log. This is what I would consider my first true Javascript project - while I have done simple programs such as Fizzbuzz, and a website colour designer, this manipulates harder concepts such as OOP, modules and (eventually) NPM.
-I decided to do this project, incidentally, because of wanting to learn new things: OOP in Javascript was a foreign world for me, as were modules and SCSS (or Sass as it is also called). It most definitely has helped me with this, but I have encountered numerous hardships along the way: as I begin on true functionality for the StopWatch class, I have decided to begin a log to describe my thoughts of the project, the hardships, and the general reasons why I did things this way.
+I decided to do this project, incidentally, because of wanting to learn new things: OOP in Javascript was a foreign world for me, as were modules and SCSS (or Sass as it is also called). It most definitely has helped me with this, but I have encountered numerous hardships along the way: as I begin on true functionality for the StopWatch class, I have decided to begin a log to describe my thoughts of the project, the hardships, and the general reasons why I did things this way. Despite moslty being small problems that someone more experienced would probably have solved quickly (or not made), I found that this project definitely served to stretch my Javascript skills.
 
 ### An OverView of the Past (before StopWatch):
 
@@ -21,3 +21,7 @@ After a few hours of horror, I finally found within the docs why this was (for a
 I write off today, and hope that there is smoother sailing ahead. While I do not expect others to read this, or even ever hear of this module, I find that it would be interesting to look back on my mistakes and learning. If there is anyone reading this, thank you, I hope you enoy my learning journey!! I will write back another day.
 
 ## Continuing 'StopWatch'
+
+The first problem that I encountered was the fact that my stopwatch was not, in fact, keeping time very well. In using the simpler 'setInterval()' function, I lacked the precision due to device problems. Instead, I had to revert to the previous idea of using the 'Date' object and calculating the change between the time of start and new time, every 10 milliseconds to prevent lag (hopefully): this may be a problem when I need to make the pause functionality, but hopefully that will be easily remedied - possibly by calculating the new change in time and adding it on.
+
+The second was even more simple to fix, being that in using the 'slice' or 'substring' methods to get the other seconds digit, I would recieve the last 2 digits from my counter. My knowledge with Python proved troublesome here, as I could not just select the second to last digit, considering it as an array, as you can in Python. Instead, I had to use the 'substring' method and select a stop point.

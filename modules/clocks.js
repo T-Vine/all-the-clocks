@@ -223,7 +223,7 @@ class StopWatch extends Clock {
     let delta;
     let seconds;
     this.interval = setInterval(function () {
-      delta = Date.now() - start;
+      delta = 50000+Date.now() - start;
       seconds = Math.floor(delta / 1000); // In seconds.
       sec2 = String(seconds).slice(-1);
       console.log(sec2);
@@ -232,6 +232,9 @@ class StopWatch extends Clock {
         sec1 = String(seconds);
         sec1 = sec1.substring(sec1.length-2, sec1.length-1 );
         console.log(sec1);
+        if (sec1 >= 6) {
+          sec1 = sec1-6;
+        }
         localUI.sec1.textContent = sec1;
       }
 

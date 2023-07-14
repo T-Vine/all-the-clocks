@@ -223,13 +223,15 @@ class StopWatch extends Clock {
     let delta;
     let seconds;
     this.interval = setInterval(function () {
-      delta = start - Date.now();
+      delta = Date.now() - start;
       seconds = Math.floor(delta / 1000); // In seconds.
       sec2 = String(seconds).slice(-1);
       console.log(sec2);
-      console.log(sec1);
-      if (seconds > 60) {
-        sec1 = String(seconds).slice(-2);
+      console.log(seconds);
+      if (seconds > 10) {
+        sec1 = String(seconds);
+        sec1 = sec1.substring(sec1.length-2, sec1.length-1 );
+        console.log(sec1);
         localUI.sec1.textContent = sec1;
       }
 

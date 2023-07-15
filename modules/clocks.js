@@ -153,7 +153,9 @@ class StopWatch extends Clock {
     this.body = document.body;
     this.counter = 0;
     this.interval = 0;
+    // Binding the classes' 'this' as otherwise they would be a child of the event listener.
     this.updateClockSW = this.updateClockSW.bind(this);
+    this.stopClockSW = this.stopClockSW.bind(this);
     this.initClockSW();
   }
   getInfoSW() {
@@ -161,18 +163,15 @@ class StopWatch extends Clock {
     let start;
     let stop;
     let clear;
-    function stopPress() {
-      console.log("Stopped...");
-    }
     function clearPress() {
-      console.log("Cleared...");
+      console.log("Stopped...");
     }
     document
       .getElementsByClassName("start")[0]
       .addEventListener("click", this.updateClockSW);
     document
       .getElementsByClassName("stop")[0]
-      .addEventListener("click", stopPress);
+      .addEventListener("click", this.stopClockSW);
     document
       .getElementsByClassName("clear")[0]
       .addEventListener("click", clearPress);
@@ -234,7 +233,7 @@ class StopWatch extends Clock {
         secDate = new Date(delta);
         sec1 = secDate.getSeconds();
         sec1 = String(sec1);
-        sec1 = sec1.substring(sec1.length-1,sec1.length-2);
+        sec1 = sec1.substring(sec1.length - 1, sec1.length - 2);
         if (sec1 === "") {
           sec1 = "0";
         }
@@ -247,24 +246,22 @@ class StopWatch extends Clock {
         sec1 = String(sec1);
         sec1 = sec1.substring(sec1.length-2, sec1.length-1 ); */
         localUI.sec1.textContent = sec1;
-        
-        
       }
       if (seconds >= 60) {
         minDate = new Date(delta);
         minutes = minDate.getUTCMinutes();
         minutes = String(minutes);
         min2 = minutes.slice(-1);
-        min1 = minutes.substring(minutes.length-2, minutes.length-1);
+        min1 = minutes.substring(minutes.length - 2, minutes.length - 1);
         /* Deprectated
         minutes = Math.floor(seconds/60);
         minutes = "00"+String(minutes);
         min2 = minutes.slice(-1);
         min1 = minutes.substring(minutes.length-2, minutes.length-1);
         */
-       if (min1 === "") {
-        min1 = "0";
-       }
+        if (min1 === "") {
+          min1 = "0";
+        }
         localUI.min2.textContent = min2;
         localUI.min1.textContent = min1;
       }
@@ -273,7 +270,7 @@ class StopWatch extends Clock {
         hours = hourDate.getUTCHours();
         hours = String(hours);
         hour2 = hours.slice(-1);
-        hour1 = hours.substring(hours.length-2, minutes.length-1);
+        hour1 = hours.substring(hours.length - 2, minutes.length - 1);
         if (hour1 === "") {
           hour1 = "0";
         }
@@ -281,9 +278,9 @@ class StopWatch extends Clock {
         localUI.hour1.textContent = hour1;
       }
       
-
-
+      
       localUI.sec2.textContent = sec2;
+      
 
       /* if (this.counter) {
         0 is undefined as is falsy.  this.counter += 1;
@@ -316,6 +313,11 @@ class StopWatch extends Clock {
         localUI.sec2.textContent = internalCounter;
       } Deprecated */
     }, 10);
+    
+    
+  }
+  stopClockSW() {
+    clearInterval(this.interval);
   }
 }
 

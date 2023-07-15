@@ -223,9 +223,9 @@ class StopWatch extends Clock {
     let delta;
     let seconds;
     let minutes;
-    let secDate;
+    let secDate, minDate, hourDate;
     this.interval = setInterval(function () {
-      delta = 3120*1000+Date.now() - start;
+      delta = Date.now() - start;
       seconds = Math.floor(delta / 1000); // In seconds.
       sec2 = String(seconds).slice(-1);
       if (seconds > 10) {
@@ -250,12 +250,20 @@ class StopWatch extends Clock {
         
       }
       if (seconds > 60) {
+        minDate = new Date(delta);
+        minutes = minDate.getUTCMinutes();
+        minutes = String(minutes);
+        min2 = minutes.slice(-1);
+        min1 = minutes.substring(minutes.length-2, minutes.length-1);
+        /* Deprectated
         minutes = Math.floor(seconds/60);
         minutes = "00"+String(minutes);
         min2 = minutes.slice(-1);
         min1 = minutes.substring(minutes.length-2, minutes.length-1);
+        */
         localUI.min2.textContent = min2;
         localUI.min1.textContent = min1;
+        
       }
       
 

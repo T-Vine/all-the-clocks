@@ -28,4 +28,7 @@ The second was even more simple to fix, being that in using the 'slice' or 'subs
 
 This then led to a problem that my second to last digit would count up to 10, rather than 6. To fix this I subtracted 6 if it became greater than that, as it would only ever go up to 9 for that digit.
 
+15/07/2023
 After some more rigorous testing, it seems that the seconds was not in fact working: something I failed to see was that, given a large number of seconds, the penultimate digit would always be substracted, even if this was not required as it were an integer minute. I have, however, found a much simpler way that I shall use in the future, and maybe change my old code too later: in inputting the milliseconds (under the variable delta, change) into a 'Date' object, I could then get the seconds automatically and then use the substring method in order to get the required digit. This did return null until it reaches one, so I added a conditional statement to set it to 0 until it became such. This is a perfect reason for my log! Having little experience with the object before, I hadn't realised that this could be done so easily, but this simplifies matters greatly for the future, for hours and such.
+
+I have now changed for this minutes, too, having encountered the same problem. It has saved several lines of code, and I am thankful that I now know of it.

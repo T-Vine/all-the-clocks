@@ -222,21 +222,43 @@ class StopWatch extends Clock {
     let start = Date.now();
     let delta;
     let seconds;
+    let minutes;
+    let secDate;
     this.interval = setInterval(function () {
-      delta = Date.now() - start;
+      delta = 3120*1000+Date.now() - start;
       seconds = Math.floor(delta / 1000); // In seconds.
       sec2 = String(seconds).slice(-1);
-      console.log(sec2);
-      console.log(seconds);
       if (seconds > 10) {
-        sec1 = String(seconds);
-        sec1 = sec1.substring(sec1.length-2, sec1.length-1 );
-        console.log(sec1);
-        if (sec1 >= 6) {
-          sec1 = sec1-6;
+        // if (!Number.isInteger(seconds/60)) {
+        secDate = new Date(delta);
+        sec1 = secDate.getSeconds();
+        sec1 = String(sec1);
+        sec1 = sec1.substring(sec1.length-1,sec1.length-2);
+        if (sec1 === "") {
+          sec1 = "0";
         }
+        /* sec1 = (seconds/60);  
+        sec1 = String(seconds);
+        sec1 = sec1.split(".")[1];
+        sec1 = "0."+sec1;
+        sec1 = parseFloat(sec1); 
+        sec1 = sec1*60;
+        sec1 = String(sec1);
+        sec1 = sec1.substring(sec1.length-2, sec1.length-1 ); */
         localUI.sec1.textContent = sec1;
+        
+        
       }
+      if (seconds > 60) {
+        minutes = Math.floor(seconds/60);
+        minutes = "00"+String(minutes);
+        min2 = minutes.slice(-1);
+        min1 = minutes.substring(minutes.length-2, minutes.length-1);
+        localUI.min2.textContent = min2;
+        localUI.min1.textContent = min1;
+      }
+      
+
 
       localUI.sec2.textContent = sec2;
 

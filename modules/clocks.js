@@ -223,6 +223,7 @@ class StopWatch extends Clock {
     let delta;
     let seconds;
     let minutes;
+    let hours;
     let secDate, minDate, hourDate;
     this.interval = setInterval(function () {
       delta = Date.now() - start;
@@ -249,7 +250,7 @@ class StopWatch extends Clock {
         
         
       }
-      if (seconds > 60) {
+      if (seconds >= 60) {
         minDate = new Date(delta);
         minutes = minDate.getUTCMinutes();
         minutes = String(minutes);
@@ -261,9 +262,23 @@ class StopWatch extends Clock {
         min2 = minutes.slice(-1);
         min1 = minutes.substring(minutes.length-2, minutes.length-1);
         */
+       if (min1 === "") {
+        min1 = "0";
+       }
         localUI.min2.textContent = min2;
         localUI.min1.textContent = min1;
-        
+      }
+      if (seconds >= 3600) {
+        hourDate = new Date(delta);
+        hours = hourDate.getUTCHours();
+        hours = String(hours);
+        hour2 = hours.slice(-1);
+        hour1 = hours.substring(hours.length-2, minutes.length-1);
+        if (hour1 === "") {
+          hour1 = "0";
+        }
+        localUI.hour2.textContent = hour2;
+        localUI.hour1.textContent = hour1;
       }
       
 

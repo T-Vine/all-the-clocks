@@ -224,8 +224,19 @@ class StopWatch extends Clock {
     let minutes;
     let hours;
     let secDate, minDate, hourDate;
+    let total;
+    total = 0;
+      
+    localUI.hour1.textContent ? total += Number(localUI.hour1.textContent)*60*60*10: total = total,
+    localUI.hour2.textContent ? total += Number(localUI.hour2.textContent)*60*60: total = total,
+    localUI.min1.textContent ? total += Number(localUI.min1.textContent)*10*60: total = total,
+    localUI.min2.textContent ? total += Number(localUI.min2.textContent)*60: total = total,
+    localUI.sec1.textContent ? total += Number(localUI.sec1.textContent)*10: total = total,
+    localUI.sec2.textContent ? total += Number(localUI.sec2.textContent): total = total;
+    total = total*1000; // As they're in seconds, we need it in milliseconds.
+    console.log(total);
     this.interval = setInterval(function () {
-      delta = Date.now() - start;
+      total ? delta = Date.now() + total - start : delta = Date.now() - start;
       seconds = Math.floor(delta / 1000); // In seconds.
       sec2 = String(seconds).slice(-1);
       if (seconds > 10) {

@@ -34,3 +34,5 @@ After some more rigorous testing, it seems that the seconds was not in fact work
 I have now changed for this minutes, too, having encountered the same problem. It has saved several lines of code, and I am thankful that I now know of it.
 
 A perfect example of human fallability just happened to me: I thought that somehow I could not access the interval's value in order to stop it. In fact, I could - but I had mistyped the line to bond the classes' 'this' to it, so that it could not recieve it and it was undefined. A most irksome moment that I spent several hours pondering on, before finding this bothersome but fortunate truth!
+ 
+After considering my options for keeping the updated clock when continuing, I believe I should be able to do it relatively simply by updating the UI array with the current digits, then totalling it and adding it to the change in time. I have also thought that I will change it to 'requestAnimationFrame' for ease of use. This will be done later.

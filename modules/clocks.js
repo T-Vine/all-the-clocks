@@ -223,7 +223,7 @@ class StopWatch extends Clock {
     let seconds;
     let minutes;
     let hours;
-    let secDate, minDate, hourDate;
+    let secDate, minDate, hourDate, end;
     let total;
     total = 0;
       

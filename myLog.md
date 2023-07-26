@@ -41,3 +41,5 @@ After completing this, I note that the digits also needed to be converted into t
 
 26/07/2023
 I have now added the clear button, which works well. Despite still having problems with adding on the millisecond (and testing yields no answers) I believe the first stage of the 'library' is now complete. I will plan future functionality later. It is now my wish to transfer this to a new repository to begin to deploy it to NPM as an EcmaScript module. I will however keep this updated.
+
+It is with great pleasure that I can now announce to my log that the stopwatch is now accurate to a few milliseconds accuracy (as opposed to several hundred previous. The major problem I encountered was the fact that, in having local variables these were reset each time I stopped and started the stopwatch. I couldn't tie the global 'this' to it due to it being unnamed due to problems. In the end, I created another text piece in the SVG, designed to take up no space/appear with CSS. I could then read the text content of this, using it effectively as a global variable, within my local function, so I could restore the number of milliseconds in each time.

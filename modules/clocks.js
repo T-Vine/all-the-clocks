@@ -91,7 +91,7 @@ class ClockWithDate extends Clock {
   initClockWD() {
     const clock = document.createElement("span");
     clock.innerHTML =
-      ' <svg class="outer" width="450" height="150"> \
+      ' <svg viewBox="0 0 450 150" class="outer" width="450" height="150"> \
         <!-- Outer --> \
         <rect x="25" y="25" rx="25" ry="25" width="400" height="115"/> \
         <!-- Hours --> \

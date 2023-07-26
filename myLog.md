@@ -38,3 +38,6 @@ A perfect example of human fallability just happened to me: I thought that someh
 Considering my options for keeping the clock's previous time when continuing, I believe I should be able to do it relatively simply by updating the UI array with the current digits, then totalling it and adding it to the change in time. I have also thought that I will change it to 'requestAnimationFrame' for ease of use. This will be done later.
 
 After completing this, I note that the digits also needed to be converted into their respective seconds and then milliseconds for use with the date. This does lead to a bit of lag for the timer, as it will always 'reset' to a specific time and lose however many milliseconds. This isn't of much importance as the timer isn't meant to be perfect. It may be considered later. The main functionality is as a pure stopwatch, rather than being able to be stopped at key points.
+
+26/07/2023
+I have now added the clear button, which works well. Despite still having problems with adding on the millisecond (and testing yields no answers) I believe the first stage of the 'library' is now complete. I will plan future functionality later. It is now my wish to transfer this to a new repository to begin to deploy it to NPM as an EcmaScript module. I will however keep this updated.

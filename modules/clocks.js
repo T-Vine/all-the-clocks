@@ -156,16 +156,11 @@ class StopWatch extends Clock {
     // Binding the classes' 'this' as otherwise they would be a child of the event listener.
     this.updateClockSW = this.updateClockSW.bind(this);
     this.stopClockSW = this.stopClockSW.bind(this);
+    this.clearClockSW = this.clearClockSW.bind(this);
     this.initClockSW();
   }
   getInfoSW() {
     this.getInfo();
-    let start;
-    let stop;
-    let clear;
-    function clearPress() {
-      console.log("Stopped...");
-    }
     document
       .getElementsByClassName("start")[0]
       .addEventListener("click", this.updateClockSW);
@@ -174,7 +169,7 @@ class StopWatch extends Clock {
       .addEventListener("click", this.stopClockSW);
     document
       .getElementsByClassName("clear")[0]
-      .addEventListener("click", clearPress);
+      .addEventListener("click", this.clearClockSW);
   }
 
   initClockSW() {
@@ -219,12 +214,7 @@ class StopWatch extends Clock {
     let internalCounter;
     let sec2, sec1, min2, min1, hour2, hour1, truncated, divided;
     let start = Date.now();
-    let delta;
-    let seconds;
-    let minutes;
-    let hours;
-    let secDate, minDate, hourDate, end;
-    let total;
+    let delta, seconds, minutes, hours, secDate, minDate, hourDate, total, milliseconds;
     total = 0;
       
     localUI.hour1.textContent ? total += Number(localUI.hour1.textContent)*60*60*10: total = total,
@@ -237,6 +227,7 @@ class StopWatch extends Clock {
     console.log(total);
     this.interval = setInterval(function () {
       total ? delta = Date.now() + total - start : delta = Date.now() - start;
+      milliseconds = String(delta).slice(-3); // Future functionality.
       seconds = Math.floor(delta / 1000); // In seconds.
       sec2 = String(seconds).slice(-1);
       if (seconds > 10) {
@@ -323,12 +314,22 @@ class StopWatch extends Clock {
         internalCounter = String(this.counter);
         localUI.sec2.textContent = internalCounter;
       } Deprecated */
-    }, 10);
+    }, 0.01);
     
     
   }
   stopClockSW() {
     clearInterval(this.interval);
+  }
+  clearClockSW() {
+    this.interval ? clearInterval(this.interval) : this.interval;
+    this.stopClockSW;
+    this.UI.sec1.textContent = 0;
+    this.UI.sec2.textContent = 0;
+    this.UI.min1.textContent = 0;
+    this.UI.min2.textContent = 0;
+    this.UI.hour1.textContent = 0;
+    this.UI.hour2.textContent = 0;
   }
 }
 

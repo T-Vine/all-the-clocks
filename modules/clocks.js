@@ -11,7 +11,7 @@ class Clock {
     // Making Clock
     const clock = document.createElement("span");
     clock.innerHTML =
-      ' <svg class="outer" width="450" height="150"> \
+      ' <svg viewBox="0 0 450 150" class="outer" width="450" height="150"> \
         <rect x="25" y="25" rx="25" ry="25" width="400" height="100"/> \
         <!-- Hours --> \
         <rect class="inner" x="45" y="35" rx="8" ry="8" width="43.75" height="80" /> \
@@ -175,7 +175,7 @@ class StopWatch extends Clock {
   initClockSW() {
     const clock = document.createElement("span");
     clock.innerHTML =
-      ' <svg class="outer" width="470" height="150"> \
+      ' <svg viewBox="0 0 470 150" class="outer" width="470" height="150"> \
         <rect x="25" y="25" rx="25" ry="25" width="440" height="100"/> \
         <!-- Hours --> \
         <rect class="inner" x="45" y="35" rx="8" ry="8" width="43.75" height="80" /> \
@@ -225,7 +225,8 @@ class StopWatch extends Clock {
     localUI.sec2.textContent ? total += Number(localUI.sec2.textContent): total = total;
     total = total*1000; // As they're in seconds, we need it in milliseconds.
     this.interval = setInterval(function () {
-      total ? delta = Date.now() + total - start : delta = Date.now() - start;
+      total ? delta = Date.now() + milliseconds + total - start : delta = Date.now() - start;
+      console.log(delta);
       milliseconds = String(delta).slice(-3); // Future functionality.
       seconds = Math.floor(delta / 1000); // In seconds.
       sec2 = String(seconds).slice(-1);
